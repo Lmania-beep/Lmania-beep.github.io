@@ -6,10 +6,11 @@
     <title>PORTFOLIO // MANIA-BEEP</title>
     <style>
         :root {
-            --bg: #f0f0f0;
-            --text: #1a1a1a;
-            --accent: #ff3e00; /* High-energy red */
-            --border: 2px solid #1a1a1a;
+            --bg: #e8e8e8;
+            --text: #111;
+            --accent: #ff3e00; 
+            --accent-light: #ffebcd;
+            --border: 3px solid #111;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,17 +19,18 @@
             background-color: var(--bg); 
             color: var(--text);
             font-family: "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.2;
-            padding: 20px;
+            line-height: 1.3;
+            padding: 15px;
         }
 
-        /* Japanese-style Dense Header */
+        /* Dense Header */
         header {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 3fr 1fr;
             border: var(--border);
             background: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            box-shadow: 4px 4px 0px var(--text);
         }
 
         .logo-box {
@@ -37,99 +39,52 @@
         }
 
         .logo-box h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 10px;
         }
 
         .status-box {
             padding: 20px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 800;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background: var(--accent-light);
         }
 
         .tag {
             background: var(--text);
             color: white;
-            padding: 2px 6px;
+            padding: 4px 8px;
             display: inline-block;
             margin-bottom: 5px;
-        }
-
-        /* The "Chaotic" Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .card {
-            border: var(--border);
-            background: white;
-            padding: 10px;
-            position: relative;
-        }
-
-        .hero-card {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            aspect-ratio: 1;
-            background: #ddd;
-            border: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-weight: bold;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            overflow: hidden;
+            font-size: 0.8rem;
         }
 
-        .card-meta {
-            margin-top: 10px;
-            font-size: 0.75rem;
-            border-top: 1px solid #eee;
-            padding-top: 5px;
-        }
-
-        /* Sidebar info style */
-        .info-sidebar {
-            grid-column: span 1;
-            background: var(--accent);
-            color: white;
-            padding: 20px;
-            border: var(--border);
-        }
-
-        .info-sidebar h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            text-decoration: underline;
-        }
-
-        /* Marquee for that "active" feel */
+        /* Marquee */
         .marquee {
             border: var(--border);
-            background: white;
-            padding: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 12px;
             margin-bottom: 20px;
-            font-weight: bold;
+            font-weight: 900;
+            font-size: 1.1rem;
             white-space: nowrap;
             overflow: hidden;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px var(--text);
         }
 
         .marquee span {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 15s linear infinite;
+            animation: marquee 20s linear infinite;
         }
 
         @keyframes marquee {
@@ -137,30 +92,170 @@
             100% { transform: translate(-100%, 0); }
         }
 
-        nav {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
+        /* The Main Chaos Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
-        nav a {
+        .card {
             border: var(--border);
-            padding: 5px 15px;
-            text-decoration: none;
-            color: black;
             background: white;
-            font-weight: bold;
-            font-size: 0.9rem;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 4px 0px var(--text);
         }
 
-        nav a:hover {
+        .hero-card {
+            grid-column: span 2;
+            grid-row: span 2;
+            padding: 10px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            background: #ccc;
+            border: 2px dashed #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1rem;
+            color: #555;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            background: #111;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Info & Pricing Blocks */
+        .info-block {
+            grid-column: span 1;
+            background: white;
+        }
+
+        .pricing-block {
+            grid-column: span 2;
+            background: #fff9e6;
+            border: var(--border);
+            padding: 20px;
+            box-shadow: 4px 4px 0px var(--text);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-bottom: 4px solid var(--text);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .price-list {
+            list-style: none;
+        }
+
+        .price-list li {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px dashed #999;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .price-list li span {
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        /* Action Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid var(--text);
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
             background: var(--accent);
             color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px var(--text);
         }
 
-        @media (max-width: 800px) {
+        /* Links & Contact Footer */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .contact-footer {
+            grid-column: span 4;
+            border: var(--border);
+            background: var(--text);
+            color: white;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            box-shadow: 4px 4px 0px var(--accent);
+        }
+
+        .contact-footer h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
             .main-grid { grid-template-columns: 1fr 1fr; }
-            .hero-card { grid-column: span 2; }
+            .hero-card, .pricing-block { grid-column: span 2; }
+            .contact-footer { grid-template-columns: 1fr; }
+            header { grid-template-columns: 1fr; }
+            .logo-box { border-right: none; border-bottom: var(--border); }
+        }
+
+        @media (max-width: 500px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .hero-card, .pricing-block, .info-block { grid-column: span 1; }
         }
     </style>
 </head>
@@ -168,24 +263,19 @@
 
     <header>
         <div class="logo-box">
-            <span class="tag">FREELANCE ARTIST</span>
+            <span class="tag">MANGA // CHARACTER // CONTENT</span>
             <h1>LMANIA BEEP</h1>
-            <p>DIGITAL CONTENT CREATOR / INDEPENDENT ARTIST</p>
+            <p><strong>INDEPENDENT DIGITAL ARTIST & CREATOR</strong></p>
         </div>
         <div class="status-box">
-            <div>STATUS: AVAILABLE FOR WORK</div>
-            <div>LOCATION: REMOTE / GLOBAL</div>
+            <div><strong>COMMISSIONS:</strong> OPEN</div>
+            <div><strong>BASE:</strong> GLOBAL</div>
+            <div><strong>WORKFLOW:</strong> INT. PAYMENTS ACCEPTED</div>
         </div>
     </header>
 
-    <nav>
-        <a href="#gallery">GALLERY</a>
-        <a href="#pricing">PRICING</a>
-        <a href="https://wa.me/YOURNUMBER">WHATSAPP</a>
-    </nav>
-
     <div class="marquee">
-        <span>NEW PROJECT COMMENCING MAY 2026 • MANGA CONTEST ENTRIES IN PROGRESS • CHARACTER COMMISSIONS OPEN • </span>
+        <span>/// NEW PORTFOLIO LIVE /// MANGA CONTEST ENTRIES IN PROGRESS /// ACCEPTING FREELANCE COMMISSIONS /// YOUTUBE ASSETS ///</span>
     </div>
 
     <div class="main-grid">
@@ -193,36 +283,69 @@
         <div class="card hero-card">
             <div class="image-placeholder">
                 <!-- Replace with your main artwork -->
-                [ MAIN_ARTWORK.JPG ]
+                [ HERO_ARTWORK.JPG ]
             </div>
-            <div class="card-meta">
-                <strong>001: HERO_PIECE</strong><br>
-                CHARACTER DESIGN & DIGITAL PAINTING
+            <div class="card-meta">001: LATEST_WORK</div>
+        </div>
+
+        <!-- Bio / About -->
+        <div class="card info-block">
+            <h2 class="section-title">ABOUT</h2>
+            <p><strong>I build visual systems for digital media.</strong></p>
+            <br>
+            <p>Specializing in manga paneling, character design, and high-retention YouTube assets. Focused on bold lines, dynamic layouts, and global audience impact.</p>
+        </div>
+
+        <!-- Social & Link Hub -->
+        <div class="card info-block">
+            <h2 class="section-title">NETWORK</h2>
+            <p>Full portfolio and active project updates:</p>
+            <div class="links-grid">
+                <a href="https://behance.net/yourusername" class="btn" style="background:#053eff;">BEHANCE</a>
+                <a href="https://instagram.com/yourusername" class="btn" style="background:#e1306c;">INSTAGRAM</a>
+                <a href="https://twitter.com/yourusername" class="btn" style="background:#1da1f2;">X / TWITTER</a>
+                <a href="https://youtube.com/yourusername" class="btn" style="background:#ff0000;">YOUTUBE</a>
             </div>
         </div>
 
-        <!-- Sidebar Style Bio -->
-        <div class="info-sidebar">
-            <h2>ABOUT</h2>
-            <p>I build visual systems for digital media. Focusing on audience retention and high-impact imagery.</p>
-            <br>
-            <p>Freelance portfolio currently under construction for international manga submissions.</p>
+        <!-- Dedicated Pricing Block -->
+        <div class="pricing-block">
+            <h2 class="section-title">COMMISSION RATES</h2>
+            <p style="margin-bottom: 15px; font-weight: bold;">Standard freelance rates for digital media production. International workflows accepted.</p>
+            <ul class="price-list">
+                <li>Character Design (Full Body) <span>$150+</span></li>
+                <li>Manga Paneling (Per Page) <span>$200+</span></li>
+                <li>YouTube Assets / Thumbnails <span>$75+</span></li>
+                <li>Commercial / Brand Collab <span>CUSTOM</span></li>
+            </ul>
         </div>
 
         <!-- Gallery Items -->
         <div class="card">
             <div class="image-placeholder">[ ART_02.JPG ]</div>
-            <div class="card-meta">PANEL_TEST_01</div>
+            <div class="card-meta">PROJECT_02</div>
         </div>
 
         <div class="card">
             <div class="image-placeholder">[ ART_03.JPG ]</div>
-            <div class="card-meta">BASEBALL_THEME_ASSET</div>
+            <div class="card-meta">PROJECT_03</div>
         </div>
 
-        <div class="card">
-            <div class="image-placeholder">[ ART_04.JPG ]</div>
-            <div class="card-meta">YOUTUBE_THUMB_CONCEPT</div>
+        <!-- Contact & Collab Footer -->
+        <div class="contact-footer">
+            <div>
+                <h3>DIRECT BOOKING</h3>
+                <a href="mailto:your@email.com" class="contact-link">→ Email Me (your@email.com)</a>
+                <a href="https://wa.me/1234567890" class="contact-link">→ WhatsApp (+1 234 567 890)</a>
+            </div>
+            <div>
+                <h3>COLLABORATORS</h3>
+                <p style="margin-bottom: 10px;">Looking to partner on a manga project or video essay? Send a brief via email with the subject line "COLLAB".</p>
+            </div>
+            <div>
+                <h3>PAYMENT WORKFLOW</h3>
+                <p>Invoices are sent securely via international payment platforms. 50% upfront required to schedule.</p>
+            </div>
         </div>
     </div>
 
