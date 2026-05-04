@@ -1,1003 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name — Editorial Illustrator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --ink: #1a1714;
-    --paper: #f5f0e8;
-    --cream: #ede8dc;
-    --rust: #b5451b;
-    --rust-light: #e8c4b4;
-    --muted: #7a7168;
-    --border: rgba(26,23,20,0.12);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 3rem;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: var(--ink);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--ink); }
-
-  .nav-social {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .nav-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px; height: 34px;
-    border: 0.5px solid var(--border);
-    border-radius: 50%;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .nav-social a:hover { background: var(--cream); border-color: var(--ink); }
-
-  .nav-social svg { width: 15px; height: 15px; fill: var(--ink); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 70px;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 4rem 6rem 3rem;
-    border-right: 0.5px solid var(--border);
-  }
-
-  .hero-kicker {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    line-height: 1.05;
-    font-weight: 400;
-    margin-bottom: 2rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--rust);
-  }
-
-  .hero-desc {
-    font-size: 1rem;
-    color: var(--muted);
-    max-width: 38ch;
-    margin-bottom: 2.5rem;
-    line-height: 1.8;
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.85rem 1.8rem;
-    background: var(--ink);
-    color: var(--paper);
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .hero-cta:hover { background: var(--rust); transform: translateY(-1px); }
-
-  .hero-right {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    overflow: hidden;
-  }
-
-  .hero-thumb {
-    aspect-ratio: 1;
-    background: var(--cream);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .hero-thumb:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 2/1; }
-
-  .thumb-placeholder {
-    width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .thumb-placeholder svg {
-    width: 28px; height: 28px;
-    opacity: 0.3;
-    fill: var(--muted);
-  }
-
-  /* ─── SECTIONS ─── */
-  section { padding: 7rem 3rem; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .section-num {
-    font-family: var(--serif);
-    font-size: 4rem;
-    font-weight: 400;
-    color: var(--rust-light);
-    line-height: 1;
-  }
-
-  .section-title {
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    font-weight: 400;
-  }
-
-  /* ─── GALLERY ─── */
-  #gallery { background: var(--paper); }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .gallery-item {
-    cursor: pointer;
-    group: true;
-  }
-
-  .gallery-img {
-    aspect-ratio: 4/5;
-    background: var(--cream);
-    overflow: hidden;
-    margin-bottom: 0.75rem;
-    position: relative;
-    transition: transform 0.3s;
-  }
-
-  .gallery-item:hover .gallery-img { transform: translateY(-4px); }
-
-  .gallery-img .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(26,23,20,0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-  }
-
-  .gallery-item:hover .overlay { background: rgba(26,23,20,0.06); }
-
-  .gallery-caption {
-    font-size: 0.8rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
-  .gallery-title {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    font-weight: 400;
-    margin-bottom: 0.2rem;
-  }
-
-  /* ─── IN THE WILD ─── */
-  #wild { background: var(--cream); }
-
-  .wild-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .wild-card {
-    background: var(--paper);
-    border: 0.5px solid var(--border);
-    padding: 1.75rem;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-  }
-
-  .wild-card:hover {
-    border-color: var(--rust);
-    transform: translateY(-2px);
-  }
-
-  .wild-pub {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 0.6rem;
-  }
-
-  .wild-headline {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 0.8rem;
-  }
-
-  .wild-meta {
-    font-size: 0.78rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .wild-thumb-sm {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--cream);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-
-  .wild-link-arrow {
-    position: absolute;
-    top: 1.75rem;
-    right: 1.75rem;
-    font-size: 0.9rem;
-    color: var(--muted);
-    transition: color 0.2s, transform 0.2s;
-  }
-
-  .wild-card:hover .wild-link-arrow {
-    color: var(--rust);
-    transform: translate(2px, -2px);
-  }
-
-  /* ─── CLIENTS ─── */
-  #clients { background: var(--paper); }
-
-  .clients-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 5rem;
-  }
-
-  .client-card {
-    border: 0.5px solid var(--border);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    transition: border-color 0.2s;
-  }
-
-  .client-card:hover { border-color: var(--rust); }
-
-  .client-logo-placeholder {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--rust);
-    border: 0.5px solid var(--border);
-  }
-
-  .client-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
-
-  .client-type {
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
-
-  /* ─── PRICING ─── */
-  #pricing { background: var(--cream); }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .price-card {
-    border: 0.5px solid var(--border);
-    padding: 2.5rem 2rem;
-    background: var(--paper);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .price-card.featured {
-    border-color: var(--rust);
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .price-badge {
-    position: absolute;
-    top: -1px; right: 2rem;
-    background: var(--rust);
-    color: var(--paper);
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-  }
-
-  .price-tier {
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 0.75rem;
-  }
-
-  .price-card.featured .price-tier { color: var(--rust-light); }
-
-  .price-name {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    font-weight: 400;
-    margin-bottom: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .price-amount {
-    font-family: var(--serif);
-    font-size: 2.8rem;
-    font-weight: 600;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .price-note {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .price-card.featured .price-note { color: rgba(245,240,232,0.55); }
-
-  .price-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-    flex: 1;
-  }
-
-  .price-features li {
-    font-size: 0.85rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    line-height: 1.5;
-  }
-
-  .price-features li::before {
-    content: '—';
-    color: var(--rust);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .price-card.featured .price-features li::before { color: var(--rust-light); }
-
-  .price-cta {
-    display: block;
-    text-align: center;
-    padding: 0.85rem;
-    border: 0.5px solid var(--ink);
-    text-decoration: none;
-    color: var(--ink);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .price-cta:hover { background: var(--ink); color: var(--paper); }
-
-  .price-card.featured .price-cta {
-    border-color: var(--paper);
-    color: var(--paper);
-  }
-
-  .price-card.featured .price-cta:hover {
-    background: var(--paper);
-    color: var(--ink);
-  }
-
-  /* ─── CONTACT ─── */
-  #contact {
-    background: var(--ink);
-    color: var(--paper);
-    text-align: center;
-    padding: 7rem 3rem;
-  }
-
-  #contact .section-num { color: rgba(245,240,232,0.15); }
-  #contact .section-title { color: var(--paper); }
-
-  .contact-subtitle {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.25rem;
-    color: rgba(245,240,232,0.6);
-    margin-bottom: 3rem;
-    max-width: 50ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .contact-options {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 4rem;
-  }
-
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 2rem;
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: transform 0.15s;
-  }
-
-  .contact-btn:hover { transform: translateY(-2px); }
-
-  .contact-btn.primary {
-    background: var(--rust);
-    color: var(--paper);
-  }
-
-  .contact-btn.secondary {
-    border: 0.5px solid rgba(245,240,232,0.3);
-    color: rgba(245,240,232,0.8);
-  }
-
-  .contact-btn.secondary:hover { border-color: var(--paper); color: var(--paper); }
-
-  .social-row {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.5);
-    transition: color 0.2s;
-  }
-
-  .social-link svg { width: 16px; height: 16px; fill: currentColor; }
-  .social-link:hover { color: var(--paper); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: #111;
-    color: rgba(245,240,232,0.35);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-kicker  { animation: fadeUp 0.6s ease both 0.1s; }
-  .hero-title   { animation: fadeUp 0.6s ease both 0.25s; }
-  .hero-desc    { animation: fadeUp 0.6s ease both 0.4s; }
-  .hero-cta     { animation: fadeUp 0.6s ease both 0.5s; }
-
-  /* ─── DIVIDERS ─── */
-  .divider {
-    height: 0.5px;
-    background: var(--border);
-    margin: 0;
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 4rem 1.5rem; }
-    section { padding: 5rem 1.5rem; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .wild-grid { grid-template-columns: 1fr; }
-    .clients-grid { grid-template-columns: repeat(2, 1fr); }
-    .pricing-grid { grid-template-columns: 1fr; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO // MANIA-BEEP</title>
+    <style>
+        :root {
+            --bg: #f0f0f0;
+            --text: #1a1a1a;
+            --accent: #ff3e00; /* High-energy red */
+            --border: 2px solid #1a1a1a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text);
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.2;
+            padding: 20px;
+        }
+
+        /* Japanese-style Dense Header */
+        header {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            border: var(--border);
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .logo-box {
+            padding: 20px;
+            border-right: var(--border);
+        }
+
+        .logo-box h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .status-box {
+            padding: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tag {
+            background: var(--text);
+            color: white;
+            padding: 2px 6px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* The "Chaotic" Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            border: var(--border);
+            background: white;
+            padding: 10px;
+            position: relative;
+        }
+
+        .hero-card {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #ddd;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+
+        /* Sidebar info style */
+        .info-sidebar {
+            grid-column: span 1;
+            background: var(--accent);
+            color: white;
+            padding: 20px;
+            border: var(--border);
+        }
+
+        .info-sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        /* Marquee for that "active" feel */
+        .marquee {
+            border: var(--border);
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        nav {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav a {
+            border: var(--border);
+            padding: 5px 15px;
+            text-decoration: none;
+            color: black;
+            background: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .main-grid { grid-template-columns: 1fr 1fr; }
+            .hero-card { grid-column: span 2; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <a href="#" class="nav-logo">Priya Sharma</a>
-  <ul class="nav-links">
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#wild">In the Wild</a></li>
-    <li><a href="#clients">Clients</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-social">
-    <!-- Twitter/X -->
-    <a href="https://twitter.com/yourusername" target="_blank" title="Twitter / X">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
-    </a>
-    <!-- Instagram -->
-    <a href="https://instagram.com/yourusername" target="_blank" title="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-    </a>
-  </div>
-</nav>
+    <header>
+        <div class="logo-box">
+            <span class="tag">FREELANCE ARTIST</span>
+            <h1>LMANIA BEEP</h1>
+            <p>DIGITAL CONTENT CREATOR / INDEPENDENT ARTIST</p>
+        </div>
+        <div class="status-box">
+            <div>STATUS: AVAILABLE FOR WORK</div>
+            <div>LOCATION: REMOTE / GLOBAL</div>
+        </div>
+    </header>
 
-<!-- ─── HERO ─── -->
-<section class="hero" style="padding: 0;">
-  <div class="hero-left">
-    <p class="hero-kicker">Editorial Illustration · Digital India → Global Press</p>
-    <h1 class="hero-title">Ideas made<br><em>visible.</em></h1>
-    <p class="hero-desc">
-      I read the article. I sit with the idea. Then I build a single image that does what a thousand words can't — stop a reader mid-scroll and make them feel the story.
-    </p>
-    <a href="#contact" class="hero-cta">
-      Commission a piece
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-  <div class="hero-right">
-    <!-- Replace these with your actual images -->
-    <div class="hero-thumb">
-      <div class="thumb-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-        Replace with your hero artwork
-      </div>
-    </div>
-    <div class="hero-thumb">
-      <div class="thumb-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-        Artwork 2
-      </div>
-    </div>
-    <div class="hero-thumb">
-      <div class="thumb-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-        Artwork 3
-      </div>
-    </div>
-  </div>
-</section>
+    <nav>
+        <a href="#gallery">GALLERY</a>
+        <a href="#pricing">PRICING</a>
+        <a href="https://wa.me/YOURNUMBER">WHATSAPP</a>
+    </nav>
 
-<div class="divider"></div>
-
-<!-- ─── GALLERY ─── -->
-<section id="gallery">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <h2 class="section-title">Selected Works</h2>
-  </div>
-  <div class="gallery-grid">
-    <!-- Work 1 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">The Weight of Silence</p>
-      <p class="gallery-caption">Substack · Mental Health</p>
-    </div>
-    <!-- Work 2 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">Capital & Conscience</p>
-      <p class="gallery-caption">Newsletter · Finance</p>
-    </div>
-    <!-- Work 3 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">The Attention Economy</p>
-      <p class="gallery-caption">Digital Journalism · Tech</p>
-    </div>
-    <!-- Work 4 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">Democracy's Slow Fade</p>
-      <p class="gallery-caption">Substack · Politics</p>
-    </div>
-    <!-- Work 5 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">Roots & Routes</p>
-      <p class="gallery-caption">Newsletter · Culture</p>
-    </div>
-    <!-- Work 6 -->
-    <div class="gallery-item">
-      <div class="gallery-img">
-        <div class="thumb-placeholder">Upload your artwork here</div>
-        <div class="overlay"></div>
-      </div>
-      <p class="gallery-title">The Infinite Scroll</p>
-      <p class="gallery-caption">Digital Journalism · Society</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── IN THE WILD ─── -->
-<section id="wild">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2 class="section-title">In the Wild</h2>
-  </div>
-  <div class="wild-grid">
-    <!-- Card 1 -->
-    <a href="https://substack.com" target="_blank" class="wild-card">
-      <span class="wild-link-arrow">↗</span>
-      <div class="wild-thumb-sm">[ Cover illustration — replace with screenshot ]</div>
-      <p class="wild-pub">Substack · @newslettername</p>
-      <h3 class="wild-headline">The cover illustration I made for this piece on AI and grief</h3>
-      <p class="wild-meta">
-        <span>Published Jan 2025</span>
-        <span>·</span>
-        <span>2.4k reads</span>
-      </p>
-    </a>
-    <!-- Card 2 -->
-    <a href="https://twitter.com" target="_blank" class="wild-card">
-      <span class="wild-link-arrow">↗</span>
-      <div class="wild-thumb-sm">[ Tweet screenshot — replace with actual ]</div>
-      <p class="wild-pub">Twitter / X · @journalist</p>
-      <h3 class="wild-headline">"This illustration captured what I spent 3,000 words trying to say"</h3>
-      <p class="wild-meta">
-        <span>Feb 2025</span>
-        <span>·</span>
-        <span>820 likes</span>
-      </p>
-    </a>
-    <!-- Card 3 -->
-    <a href="https://substack.com" target="_blank" class="wild-card">
-      <span class="wild-link-arrow">↗</span>
-      <div class="wild-thumb-sm">[ Cover illustration — replace with screenshot ]</div>
-      <p class="wild-pub">Newsletter · @writerhandle</p>
-      <h3 class="wild-headline">Visual essay on urban loneliness featured in weekly dispatch</h3>
-      <p class="wild-meta">
-        <span>Mar 2025</span>
-        <span>·</span>
-        <span>5.1k subscribers</span>
-      </p>
-    </a>
-    <!-- Card 4 -->
-    <a href="https://instagram.com" target="_blank" class="wild-card">
-      <span class="wild-link-arrow">↗</span>
-      <div class="wild-thumb-sm">[ Instagram post screenshot ]</div>
-      <p class="wild-pub">Instagram · @publication</p>
-      <h3 class="wild-headline">Climate anxiety editorial picked up and reshared by 4 major accounts</h3>
-      <p class="wild-meta">
-        <span>Apr 2025</span>
-        <span>·</span>
-        <span>11k impressions</span>
-      </p>
-    </a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── CLIENTS ─── -->
-<section id="clients">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2 class="section-title">Clients &amp; Collaborators</h2>
-  </div>
-  <div class="clients-grid">
-    <div class="client-card">
-      <div class="client-logo-placeholder">A</div>
-      <p class="client-name">Author / Publisher A</p>
-      <p class="client-type">Substack Newsletter</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">B</div>
-      <p class="client-name">Writer B</p>
-      <p class="client-type">Digital Journalism</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">C</div>
-      <p class="client-name">Publication C</p>
-      <p class="client-type">Newsletter</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">D</div>
-      <p class="client-name">Creator D</p>
-      <p class="client-type">Substack · Tech</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">E</div>
-      <p class="client-name">Writer E</p>
-      <p class="client-type">Political Commentary</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">F</div>
-      <p class="client-name">Editor F</p>
-      <p class="client-type">Culture Writing</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">G</div>
-      <p class="client-name">Author G</p>
-      <p class="client-type">Finance Newsletter</p>
-    </div>
-    <div class="client-card">
-      <div class="client-logo-placeholder">+</div>
-      <p class="client-name">And more</p>
-      <p class="client-type">US &amp; Global clients</p>
-    </div>
-  </div>
-
-  <div style="background: var(--cream); padding: 2.5rem 3rem; display: flex; align-items: flex-start; gap: 3rem; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 220px;">
-      <p style="font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem;">Workflow</p>
-      <p style="font-family: var(--serif); font-size: 1.4rem; line-height: 1.4;">I read the piece before I pick up a stylus.</p>
-    </div>
-    <div style="flex: 2; min-width: 280px; font-size: 0.88rem; color: var(--muted); line-height: 1.8;">
-      Every engagement starts with a conversation — not a brief. Send me a link or a draft. I'll come back with questions, then concepts. You stay in the loop through every iteration until the image feels inevitable.
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── PRICING ─── -->
-<section id="pricing">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2 class="section-title">Pricing</h2>
-  </div>
-  <div class="pricing-grid">
-
-    <!-- Tier 1: Basic -->
-    <div class="price-card">
-      <p class="price-tier">Tier 01</p>
-      <h3 class="price-name">Basic Thumbnail</h3>
-      <p class="price-amount">$120</p>
-      <p class="price-note">You provide the concept. I execute.</p>
-      <ul class="price-features">
-        <li>Client supplies full creative brief</li>
-        <li>One primary illustration, web resolution</li>
-        <li>2 revision rounds</li>
-        <li>Delivery in 3–5 business days</li>
-        <li>Digital use rights (newsletter only)</li>
-      </ul>
-      <a href="#contact" class="price-cta">Start a project</a>
+    <div class="marquee">
+        <span>NEW PROJECT COMMENCING MAY 2026 • MANGA CONTEST ENTRIES IN PROGRESS • CHARACTER COMMISSIONS OPEN • </span>
     </div>
 
-    <!-- Tier 2: Editorial Package (featured) -->
-    <div class="price-card featured">
-      <span class="price-badge">Most Requested</span>
-      <p class="price-tier">Tier 02</p>
-      <h3 class="price-name">Editorial Package</h3>
-      <p class="price-amount">$280</p>
-      <p class="price-note">I read, I think, I concept-direct.</p>
-      <ul class="price-features">
-        <li>I read your full article or draft</li>
-        <li>Concept brainstorm session (async or live)</li>
-        <li>2–3 rough concept sketches</li>
-        <li>Final illustration + social crop</li>
-        <li>3 revision rounds</li>
-        <li>5–7 business day timeline</li>
-        <li>Newsletter + social media rights included</li>
-      </ul>
-      <a href="#contact" class="price-cta">Commission this</a>
+    <div class="main-grid">
+        <!-- Main Hero Artwork -->
+        <div class="card hero-card">
+            <div class="image-placeholder">
+                <!-- Replace with your main artwork -->
+                [ MAIN_ARTWORK.JPG ]
+            </div>
+            <div class="card-meta">
+                <strong>001: HERO_PIECE</strong><br>
+                CHARACTER DESIGN & DIGITAL PAINTING
+            </div>
+        </div>
+
+        <!-- Sidebar Style Bio -->
+        <div class="info-sidebar">
+            <h2>ABOUT</h2>
+            <p>I build visual systems for digital media. Focusing on audience retention and high-impact imagery.</p>
+            <br>
+            <p>Freelance portfolio currently under construction for international manga submissions.</p>
+        </div>
+
+        <!-- Gallery Items -->
+        <div class="card">
+            <div class="image-placeholder">[ ART_02.JPG ]</div>
+            <div class="card-meta">PANEL_TEST_01</div>
+        </div>
+
+        <div class="card">
+            <div class="image-placeholder">[ ART_03.JPG ]</div>
+            <div class="card-meta">BASEBALL_THEME_ASSET</div>
+        </div>
+
+        <div class="card">
+            <div class="image-placeholder">[ ART_04.JPG ]</div>
+            <div class="card-meta">YOUTUBE_THUMB_CONCEPT</div>
+        </div>
     </div>
-
-    <!-- Tier 3: Commercial -->
-    <div class="price-card">
-      <p class="price-tier">Tier 03</p>
-      <h3 class="price-name">Commercial Rights</h3>
-      <p class="price-amount">$500+</p>
-      <p class="price-note">For-profit, licensed, and branded use.</p>
-      <ul class="price-features">
-        <li>Everything in Editorial Package</li>
-        <li>Full commercial usage license</li>
-        <li>Paid newsletter / paywalled content</li>
-        <li>Brand partnerships &amp; sponsored posts</li>
-        <li>Print or merchandise rights (add-on)</li>
-        <li>Source file delivery (PSD / AI)</li>
-        <li>Priority turnaround available</li>
-      </ul>
-      <a href="#contact" class="price-cta">Let's talk</a>
-    </div>
-
-  </div>
-
-  <!-- Pricing note -->
-  <div style="margin-top: 2rem; padding: 1.5rem 2rem; border: 0.5px solid var(--border); display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-    <div>
-      <p style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem;">Payment</p>
-      <p style="font-size: 0.85rem; color: var(--muted);">All prices in USD. Payment via Wise bank transfer — fast, transparent, zero surprise fees. Invoice sent via Gmail before work begins.</p>
-    </div>
-    <div>
-      <p style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem;">Rush / Retainer</p>
-      <p style="font-size: 0.85rem; color: var(--muted);">Rush delivery (+40%). Monthly retainer packages available for recurring collaborators — ask me.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── CONTACT ─── -->
-<section id="contact">
-  <div class="section-header" style="justify-content: center;">
-    <h2 class="section-title" style="font-family: var(--serif); font-size: 3rem; font-weight: 400; color: var(--paper);">Let's make<br><em style="color: var(--rust-light);">something real.</em></h2>
-  </div>
-  <p class="contact-subtitle">Start with a message. I typically respond within a few hours — let's talk about your piece before we talk about anything else.</p>
-
-  <div class="contact-options">
-    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="contact-btn primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-      WhatsApp / Signal
-    </a>
-    <a href="mailto:your@gmail.com" class="contact-btn secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      Send an Email
-    </a>
-    <a href="https://twitter.com/yourusername" target="_blank" class="contact-btn secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
-      DM on X
-    </a>
-  </div>
-
-  <div class="social-row">
-    <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
-      Twitter / X
-    </a>
-    <a href="https://instagram.com/yourusername" target="_blank" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      Instagram
-    </a>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <p>© 2026 Priya Sharma · Editorial Illustrator · Based in India, working globally · Powered by GitHub Pages (Free)</p>
-</footer>
 
 </body>
 </html>
