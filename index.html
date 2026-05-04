@@ -1,353 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO // MANIA-BEEP</title>
-    <style>
-        :root {
-            --bg: #e8e8e8;
-            --text: #111;
-            --accent: #ff3e00; 
-            --accent-light: #ffebcd;
-            --border: 3px solid #111;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Editorial Illustrator</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            background-color: var(--bg); 
-            color: var(--text);
-            font-family: "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.3;
-            padding: 15px;
-        }
+<style>
+  :root {
+    --ink: #111111;
+    --paper: #ffffff; /* Changed to pure white */
+    --cream: #ffffff; /* Changed to pure white */
+    --rust: #000000;  /* Changed to black for a cleaner look */
+    --rust-light: #eeeeee;
+    --muted: #666666;
+    --border: rgba(0,0,0,0.1);
+    /* Standard non-fancy fonts */
+    --serif: 'Inter', system-ui, sans-serif; 
+    --sans: 'Inter', system-ui, sans-serif;
+  }
 
-        /* Dense Header */
-        header {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            border: var(--border);
-            background: white;
-            margin-bottom: 15px;
-            box-shadow: 4px 4px 0px var(--text);
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .logo-box {
-            padding: 20px;
-            border-right: var(--border);
-        }
+  html { scroll-behavior: smooth; }
 
-        .logo-box h1 {
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        .status-box {
-            padding: 20px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: var(--accent-light);
-        }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
 
-        .tag {
-            background: var(--text);
-            color: white;
-            padding: 4px 8px;
-            display: inline-block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--ink);
+  }
 
-        /* Marquee */
-        .marquee {
-            border: var(--border);
-            background: var(--accent);
-            color: white;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-transform: uppercase;
-            box-shadow: 4px 4px 0px var(--text);
-        }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-        .marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
-        }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
 
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
+  .nav-links a:hover { color: var(--ink); }
 
-        /* The Main Chaos Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
-        }
+  .nav-social {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
 
-        .card {
-            border: var(--border);
-            background: white;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 4px 4px 0px var(--text);
-        }
+  .nav-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
 
-        .hero-card {
-            grid-column: span 2;
-            grid-row: span 2;
-            padding: 10px;
-        }
+  .nav-social a:hover { background: #f9f9f9; border-color: var(--ink); }
+  .nav-social svg { width: 15px; height: 15px; fill: var(--ink); }
 
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            min-height: 250px;
-            background: #ccc;
-            border: 2px dashed #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1rem;
-            color: #555;
-            text-transform: uppercase;
-            overflow: hidden;
-        }
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+  }
 
-        .card-meta {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            background: #111;
-            color: white;
-            padding: 5px;
-            text-align: center;
-            text-transform: uppercase;
-        }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 3rem;
+    border-right: 1px solid var(--border);
+  }
 
-        /* Info & Pricing Blocks */
-        .info-block {
-            grid-column: span 1;
-            background: white;
-        }
+  .hero-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
 
-        .pricing-block {
-            grid-column: span 2;
-            background: #fff9e6;
-            border: var(--border);
-            padding: 20px;
-            box-shadow: 4px 4px 0px var(--text);
-        }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 800;
+    margin-bottom: 2rem;
+  }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            border-bottom: 4px solid var(--text);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
+  .hero-title em {
+    font-style: italic;
+    color: var(--ink);
+  }
 
-        .price-list {
-            list-style: none;
-        }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
 
-        .price-list li {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px dashed #999;
-            padding: 10px 0;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.8rem;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    font-weight: 700;
+  }
 
-        .price-list li span {
-            color: var(--accent);
-            font-weight: 900;
-        }
+  .hero-cta:hover { opacity: 0.8; transform: translateY(-1px); }
 
-        /* Action Buttons */
-        .btn {
-            display: block;
-            width: 100%;
-            background: var(--text);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            border: 2px solid var(--text);
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    overflow: hidden;
+    background: #fdfdfd;
+  }
 
-        .btn:hover {
-            background: var(--accent);
-            color: white;
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px var(--text);
-        }
+  .hero-thumb {
+    aspect-ratio: 1;
+    background: #f9f9f9;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+  }
 
-        /* Links & Contact Footer */
-        .links-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
-        }
+  .hero-thumb:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 2/1; }
 
-        .contact-footer {
-            grid-column: span 4;
-            border: var(--border);
-            background: var(--text);
-            color: white;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            box-shadow: 4px 4px 0px var(--accent);
-        }
+  .thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #cccccc;
+    letter-spacing: 0.1em;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-transform: uppercase;
+  }
 
-        .contact-footer h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            text-decoration: underline;
-        }
+  .thumb-placeholder svg { width: 28px; height: 28px; opacity: 0.2; fill: var(--muted); }
 
-        .contact-link {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+  /* ─── SECTIONS ─── */
+  section { padding: 7rem 3rem; }
 
-        .contact-link:hover {
-            color: var(--accent);
-        }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
 
-        @media (max-width: 900px) {
-            .main-grid { grid-template-columns: 1fr 1fr; }
-            .hero-card, .pricing-block { grid-column: span 2; }
-            .contact-footer { grid-template-columns: 1fr; }
-            header { grid-template-columns: 1fr; }
-            .logo-box { border-right: none; border-bottom: var(--border); }
-        }
+  .section-num {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #eeeeee;
+    line-height: 1;
+  }
 
-        @media (max-width: 500px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .hero-card, .pricing-block, .info-block { grid-column: span 1; }
-        }
-    </style>
+  .section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  /* ─── GALLERY ─── */
+  #gallery { background: var(--paper); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .gallery-item { cursor: pointer; }
+
+  .gallery-img {
+    aspect-ratio: 4/5;
+    background: #f9f9f9;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    position: relative;
+    transition: transform 0.3s;
+    border: 1px solid var(--border);
+  }
+
+  .gallery-item:hover .gallery-img { transform: translateY(-4px); }
+
+  .gallery-caption {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .gallery-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ─── IN THE WILD ─── */
+  #wild { background: #fafafa; }
+
+  .wild-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .wild-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+
+  .wild-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  .wild-pub {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .wild-headline {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+  }
+
+  .wild-meta { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+
+  .wild-thumb-sm {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #f0f0f0;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #bbb;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── CLIENTS ─── */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .client-card {
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .client-logo-placeholder {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ─── PRICING ─── */
+  #pricing { background: #fafafa; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .price-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-card.featured { border: 2px solid var(--ink); }
+
+  .price-amount { font-size: 2.8rem; font-weight: 800; line-height: 1; margin-bottom: 0.25rem; }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; flex: 1; }
+
+  .price-features li { font-size: 0.85rem; display: flex; align-items: flex-start; gap: 0.6rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 0.5rem; }
+
+  .price-cta {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    background: var(--ink);
+    text-decoration: none;
+    color: var(--paper);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--ink); color: var(--paper); text-align: center; padding: 7rem 3rem; }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  footer { background: #000; color: #666; text-align: center; padding: 2rem; font-size: 0.75rem; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo-box">
-            <span class="tag">MANGA // CHARACTER // CONTENT</span>
-            <h1>LMANIA BEEP</h1>
-            <p><strong>INDEPENDENT DIGITAL ARTIST & CREATOR</strong></p>
-        </div>
-        <div class="status-box">
-            <div><strong>COMMISSIONS:</strong> OPEN</div>
-            <div><strong>BASE:</strong> GLOBAL</div>
-            <div><strong>WORKFLOW:</strong> INT. PAYMENTS ACCEPTED</div>
-        </div>
-    </header>
+<nav>
+  <a href="#" class="nav-logo">Priya Sharma</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#wild">In the Wild</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-social">
+    <a href="#"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+</nav>
 
-    <div class="marquee">
-        <span>/// NEW PORTFOLIO LIVE /// MANGA CONTEST ENTRIES IN PROGRESS /// ACCEPTING FREELANCE COMMISSIONS /// YOUTUBE ASSETS ///</span>
+<section class="hero" style="padding: 0;">
+  <div class="hero-left">
+    <p class="hero-kicker">Editorial Illustration · Digital India → Global Press</p>
+    <h1 class="hero-title">Ideas made<br><em>visible.</em></h1>
+    <p class="hero-desc">I read the article. I sit with the idea. Then I build a single image that does what a thousand words can't — stop a reader mid-scroll and make them feel the story.</p>
+    <a href="#contact" class="hero-cta">Commission a piece</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-thumb"><div class="thumb-placeholder">Hero Artwork</div></div>
+    <div class="hero-thumb"><div class="thumb-placeholder">Artwork 2</div></div>
+    <div class="hero-thumb"><div class="thumb-placeholder">Artwork 3</div></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Selected Works</h2></div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><div class="gallery-img"></div><p class="gallery-title">The Weight of Silence</p><p class="gallery-caption">Substack · Mental Health</p></div>
+    <div class="gallery-item"><div class="gallery-img"></div><p class="gallery-title">Capital & Conscience</p><p class="gallery-caption">Newsletter · Finance</p></div>
+    <div class="gallery-item"><div class="gallery-img"></div><p class="gallery-title">The Attention Economy</p><p class="gallery-caption">Digital Journalism · Tech</p></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Pricing</h2></div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3 class="price-name">Basic Thumbnail</h3>
+      <p class="price-amount">$120</p>
+      <ul class="price-features"><li>Client supplies full brief</li><li>2 revision rounds</li></ul>
+      <a href="#contact" class="price-cta">Start a project</a>
     </div>
-
-    <div class="main-grid">
-        <!-- Main Hero Artwork -->
-        <div class="card hero-card">
-            <div class="image-placeholder">
-                <!-- Replace with your main artwork -->
-                [ HERO_ARTWORK.JPG ]
-            </div>
-            <div class="card-meta">001: LATEST_WORK</div>
-        </div>
-
-        <!-- Bio / About -->
-        <div class="card info-block">
-            <h2 class="section-title">ABOUT</h2>
-            <p><strong>I build visual systems for digital media.</strong></p>
-            <br>
-            <p>Specializing in manga paneling, character design, and high-retention YouTube assets. Focused on bold lines, dynamic layouts, and global audience impact.</p>
-        </div>
-
-        <!-- Social & Link Hub -->
-        <div class="card info-block">
-            <h2 class="section-title">NETWORK</h2>
-            <p>Full portfolio and active project updates:</p>
-            <div class="links-grid">
-                <a href="https://behance.net/yourusername" class="btn" style="background:#053eff;">BEHANCE</a>
-                <a href="https://instagram.com/yourusername" class="btn" style="background:#e1306c;">INSTAGRAM</a>
-                <a href="https://twitter.com/yourusername" class="btn" style="background:#1da1f2;">X / TWITTER</a>
-                <a href="https://youtube.com/yourusername" class="btn" style="background:#ff0000;">YOUTUBE</a>
-            </div>
-        </div>
-
-        <!-- Dedicated Pricing Block -->
-        <div class="pricing-block">
-            <h2 class="section-title">COMMISSION RATES</h2>
-            <p style="margin-bottom: 15px; font-weight: bold;">Standard freelance rates for digital media production. International workflows accepted.</p>
-            <ul class="price-list">
-                <li>Character Design (Full Body) <span>$150+</span></li>
-                <li>Manga Paneling (Per Page) <span>$200+</span></li>
-                <li>YouTube Assets / Thumbnails <span>$75+</span></li>
-                <li>Commercial / Brand Collab <span>CUSTOM</span></li>
-            </ul>
-        </div>
-
-        <!-- Gallery Items -->
-        <div class="card">
-            <div class="image-placeholder">[ ART_02.JPG ]</div>
-            <div class="card-meta">PROJECT_02</div>
-        </div>
-
-        <div class="card">
-            <div class="image-placeholder">[ ART_03.JPG ]</div>
-            <div class="card-meta">PROJECT_03</div>
-        </div>
-
-        <!-- Contact & Collab Footer -->
-        <div class="contact-footer">
-            <div>
-                <h3>DIRECT BOOKING</h3>
-                <a href="mailto:your@email.com" class="contact-link">→ Email Me (your@email.com)</a>
-                <a href="https://wa.me/1234567890" class="contact-link">→ WhatsApp (+1 234 567 890)</a>
-            </div>
-            <div>
-                <h3>COLLABORATORS</h3>
-                <p style="margin-bottom: 10px;">Looking to partner on a manga project or video essay? Send a brief via email with the subject line "COLLAB".</p>
-            </div>
-            <div>
-                <h3>PAYMENT WORKFLOW</h3>
-                <p>Invoices are sent securely via international payment platforms. 50% upfront required to schedule.</p>
-            </div>
-        </div>
+    <div class="price-card featured">
+      <h3 class="price-name">Editorial Package</h3>
+      <p class="price-amount">$280</p>
+      <ul class="price-features"><li>Full Concept Directing</li><li>3 revision rounds</li></ul>
+      <a href="#contact" class="price-cta">Commission this</a>
     </div>
+    <div class="price-card">
+      <h3 class="price-name">Commercial Rights</h3>
+      <p class="price-amount">$500+</p>
+      <ul class="price-features"><li>Full commercial license</li><li>Source file delivery</li></ul>
+      <a href="#contact" class="price-cta">Let's talk</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Let's make something real.</h2>
+  <div class="contact-options">
+    <a href="#" class="contact-btn">WhatsApp</a>
+    <a href="#" class="contact-btn">Email Me</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Priya Sharma · Editorial Illustrator · Powered by GitHub Pages</p>
+</footer>
 
 </body>
 </html>
