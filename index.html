@@ -1,596 +1,1219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draft Webpage Layout</title>
-    <style>
-        /* Global Styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Times New Roman', Times, serif; /* Approximation of the serif font in the draft */
-            color: #333;
-            background-color: white;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>yellowline-faroff1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --yellow: #f5c800;
+    --gray: #1a1a1a;
+    --mid: #888;
+  }
 
-        /* General Section Styles */
-        section {
-            padding: 60px 20px;
-            box-sizing: border-box;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Typography - Preserving typos from the draft */
-        p, .price-desc {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            text-align: left;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* 1. Header & Start (Image 0) */
-        header {
-            background-color: black;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            text-align: left;
-            width: 100%;
-            box-sizing: border-box;
-            border-bottom: 2px solid black; /* The black line */
-        }
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
 
-        .start-content {
-            background-color: white;
-            padding: 100px 20px;
-            text-align: center;
-        }
+  /* ── SECTION 1: HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
 
-        .start-content h1 {
-            font-size: 60px;
-            font-weight: bold;
-            margin: 10px 0;
-            /* Placeholder for the stylized/hand-drawn text */
-        }
+  .hero-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px 0 48px;
+    border-bottom: 2.5px solid var(--yellow);
+    padding-bottom: 20px;
+  }
 
-        /* 2. Black Art Gallery (Image 1) - TIGHTLY PACKED MASONRY-STYLE */
-        .gallery-section {
-            background-color: black;
-            padding: 0; /* Important for no space */
-            display: block; /* Use block for masonry column approach */
-            column-count: 3; /* Approximate number of columns */
-            column-gap: 0; /* No space between columns */
-        }
+  .brand-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--black);
+    font-style: italic;
+  }
 
-        .gallery-item {
-            display: inline-block; /* Essential for masonry columns */
-            width: 100%; /* Spans full column width */
-            margin: 0;
-            padding: 0;
-            break-inside: avoid; /* Prevents splitting an image across columns */
-            overflow: hidden;
-        }
+  .brand-name span {
+    color: var(--yellow);
+    font-style: normal;
+  }
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* Removes bottom whitespace */
-            object-fit: cover;
-        }
+  .social-buttons {
+    display: flex;
+    gap: 12px;
+  }
 
-        /* 3. Comparison Section (Image 3) */
-        .comparison-section {
-            background-color: white;
-            text-align: center;
-        }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border: 2px solid var(--black);
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.15s, color 0.15s;
+  }
+  .social-btn:hover { background: var(--black); color: var(--white); }
+  .social-btn.yt:hover { background: #ff0000; border-color: #ff0000; color: #fff; }
+  .social-btn.ig:hover { background: #c13584; border-color: #c13584; color: #fff; }
+  .social-btn.tw:hover { background: #1da1f2; border-color: #1da1f2; color: #fff; }
 
-        .comparison-text {
-            font-size: 20px;
-            margin-bottom: 40px;
-            max-width: 700px;
-        }
+  .hero-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 48px;
+    gap: 60px;
+  }
 
-        .comparison-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
-        }
+  .hero-text-col {
+    flex: 1;
+    max-width: 480px;
+  }
 
-        .compare-image-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Replicates the 'eg' sketchiness with a border placeholder */
-            border: 2px solid #ccc;
-            padding: 10px;
-        }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
 
-        .compare-image-wrapper img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: contain; /* Prevents cropping in comparison */
-        }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 28px;
+    color: var(--black);
+  }
 
-        .comparison-divider {
-            width: 2px;
-            height: 300px; /* Adjust height based on images */
-            background-color: black;
-            flex-shrink: 0;
-        }
+  .hero-title .line-yellow {
+    display: block;
+    color: var(--yellow);
+    font-style: italic;
+    -webkit-text-stroke: 2px var(--black);
+  }
 
-        /* 4. Pricing Section (Image 4) */
-        .pricing-section {
-            background-color: white;
-            text-align: center;
-        }
+  .hero-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 360px;
+    margin-bottom: 32px;
+  }
 
-        .pricing-section h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .hero-cta:hover { background: var(--yellow); color: var(--black); }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            max-width: 900px;
-            width: 100%;
-            text-align: left;
-        }
+  .hero-image-col {
+    flex: 1;
+    max-width: 420px;
+    aspect-ratio: 3/4;
+    background: var(--black);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
 
-        .pricing-col {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+  .hero-image-col img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-        .price-box {
-            font-size: 28px;
-            font-weight: bold;
-            padding: 10px 25px;
-            border: 4px solid black;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+  .upload-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #555;
+    transition: color 0.15s;
+    pointer-events: none;
+  }
+  .upload-placeholder svg { width: 40px; height: 40px; opacity: 0.4; }
+  .upload-placeholder p { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; }
 
-        .price-desc {
-            font-size: 18px;
-            line-height: 1.6;
-        }
+  .hero-bottom-ticker {
+    padding: 14px 48px;
+    background: var(--black);
+    color: var(--yellow);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-        /* 5. Content & Contact (Images 2 & 5) */
-        .contact-info-section {
-            background-color: white;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-            align-items: flex-start;
-        }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 20s linear infinite;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 
-        .contact-email-row {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
+  /* ── SECTION 2: GALLERY (BLACK) ── */
+  #gallery {
+    background: var(--black);
+    padding: 0;
+    position: relative;
+  }
 
-        .contact-email-box {
-            display: inline-block;
-            border: 3px solid black;
-            padding: 8px 15px;
-            font-size: 18px;
-            /* Placeholder for 'my email' hand-drawn text */
-            font-weight: bold;
-        }
+  .gallery-header {
+    padding: 40px 48px 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
 
-        /* Style the arrow from Image 2 */
-        .arrow {
-            font-size: 40px;
-            font-weight: bold;
-        }
+  .gallery-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--white);
+  }
 
-    </style>
+  .gallery-header span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* Masonry grid — all art glued together with zero gap */
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    width: 100%;
+  }
+
+  .art-cell {
+    position: relative;
+    background: #111;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+
+  /* Varied grid spans for mosaic effect */
+  .art-cell:nth-child(1)  { grid-column: span 2; grid-row: span 2; aspect-ratio: 1/1; }
+  .art-cell:nth-child(2)  { grid-column: span 1; grid-row: span 1; aspect-ratio: 1/1; }
+  .art-cell:nth-child(3)  { grid-column: span 1; grid-row: span 1; aspect-ratio: 1/1; }
+  .art-cell:nth-child(4)  { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
+  .art-cell:nth-child(5)  { grid-column: span 1; grid-row: span 2; aspect-ratio: 1/2; }
+  .art-cell:nth-child(6)  { grid-column: span 1; grid-row: span 1; aspect-ratio: 1/1; }
+  .art-cell:nth-child(7)  { grid-column: span 3; grid-row: span 1; aspect-ratio: 3/1; }
+  .art-cell:nth-child(8)  { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
+  .art-cell:nth-child(9)  { grid-column: span 2; grid-row: span 2; aspect-ratio: 1/1; }
+  .art-cell:nth-child(10) { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
+
+  .art-cell img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .art-cell:hover img { transform: scale(1.04); }
+
+  .art-cell-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #333;
+    pointer-events: none;
+  }
+
+  .art-cell-inner svg { width: 32px; height: 32px; opacity: 0.3; }
+  .art-cell-inner p { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.3; }
+
+  .art-cell input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .gallery-footer {
+    padding: 24px 48px 40px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── SECTION 3: SERVICES ── */
+  #services {
+    min-height: 70vh;
+    display: flex;
+    align-items: stretch;
+    background: var(--white);
+    border-top: 3px solid var(--yellow);
+  }
+
+  .services-left {
+    flex: 1;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    border-right: 2px solid #ddd;
+  }
+
+  .services-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.25;
+    color: var(--black);
+  }
+
+  .services-tagline strong {
+    font-style: normal;
+    font-weight: 900;
+    display: block;
+    font-size: 0.65em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+
+  .services-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .services-list li {
+    padding: 6px 14px;
+    border: 1.5px solid var(--black);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .services-sub {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: #444;
+    max-width: 400px;
+    border-left: 3px solid var(--yellow);
+    padding-left: 18px;
+  }
+
+  .services-right {
+    flex: 0 0 420px;
+    background: var(--black);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .services-right img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    position: absolute; inset: 0;
+  }
+
+  /* ── SECTION 4: PRICING ── */
+  #pricing {
+    background: var(--black);
+    padding: 80px 48px;
+    position: relative;
+  }
+
+  .pricing-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 16px;
+  }
+
+  .pricing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .pricing-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: #222;
+    border: 2px solid #222;
+  }
+
+  .pricing-card {
+    background: var(--black);
+    padding: 48px 40px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .pricing-card:hover { background: #0f0f0f; }
+
+  .pricing-card.featured {
+    background: var(--yellow);
+  }
+
+  .pricing-card.featured:hover { background: #e8bb00; }
+
+  .pricing-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--yellow);
+    color: var(--black);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .pricing-card.featured .pricing-badge {
+    background: var(--black);
+    color: var(--yellow);
+  }
+
+  .pricing-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .pricing-card.featured .pricing-amount { color: var(--black); }
+
+  .pricing-currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+  }
+
+  .pricing-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 28px;
+  }
+
+  .pricing-card.featured .pricing-label { color: rgba(0,0,0,0.5); }
+
+  .pricing-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--yellow);
+    margin-bottom: 28px;
+  }
+
+  .pricing-card.featured .pricing-divider { background: var(--black); }
+
+  .pricing-desc {
+    font-size: 0.82rem;
+    line-height: 1.85;
+    color: #aaa;
+  }
+
+  .pricing-card.featured .pricing-desc { color: rgba(0,0,0,0.7); }
+
+  /* ── SECTION 5: COMPARISON ── */
+  #comparison {
+    background: var(--white);
+    padding: 80px 48px;
+    border-top: 3px solid var(--yellow);
+  }
+
+  .comparison-header {
+    margin-bottom: 24px;
+  }
+
+  .comparison-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    max-width: 640px;
+    margin-bottom: 12px;
+  }
+
+  .comparison-header h2 em {
+    font-style: italic;
+    color: #555;
+  }
+
+  .comparison-header p {
+    font-size: 0.8rem;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  .comparison-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 4px 1fr;
+    gap: 0;
+    background: var(--black);
+    position: relative;
+  }
+
+  .comp-label {
+    position: absolute;
+    top: 14px;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 4px 10px;
+    font-weight: 700;
+    z-index: 5;
+  }
+
+  .comp-label.left { left: 14px; }
+  .comp-label.right { right: 14px; text-align: right; }
+
+  .comp-side {
+    position: relative;
+    min-height: 320px;
+    background: #111;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comp-side img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .comp-divider {
+    background: var(--yellow);
+    width: 4px;
+  }
+
+  .comp-side input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%; height: 100%;
+    z-index: 10;
+  }
+
+  /* ── SECTION 6: EMAIL/CONTACT ── */
+  #contact {
+    background: var(--black);
+    padding: 80px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: var(--yellow);
+    opacity: 0.04;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .contact-left h2 em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+
+  .contact-recommendation {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: #aaa;
+    margin-bottom: 32px;
+    border-left: 3px solid var(--yellow);
+    padding-left: 18px;
+  }
+
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-right p {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: #aaa;
+  }
+
+  .email-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border: 2px solid var(--yellow);
+    background: transparent;
+  }
+
+  .email-box-icon {
+    color: var(--yellow);
+    flex-shrink: 0;
+  }
+
+  .email-box-text {
+    flex: 1;
+  }
+
+  .email-box-text span {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+
+  .email-address {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .email-address:hover { color: var(--yellow); }
+
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+    align-self: flex-start;
+  }
+  .contact-cta:hover { background: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  footer .foot-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: #333;
+  }
+
+  footer .foot-brand span { color: var(--yellow); font-style: normal; }
+
+  footer p {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  /* ── UPLOAD HELPERS ── */
+  .upload-zone {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    color: #444;
+  }
+  .upload-zone svg { width: 32px; height: 32px; opacity: 0.3; }
+  .upload-zone p { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; }
+
+  .hidden-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%; height: 100%;
+    z-index: 10;
+  }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .hero-top-bar { flex-direction: column; gap: 16px; padding: 20px 24px; }
+    .hero-body { flex-direction: column; padding: 40px 24px; }
+    .hero-image-col { max-width: 100%; width: 100%; }
+    .services-left { padding: 48px 24px; }
+    .services-right { flex: 0 0 280px; }
+    #services { flex-direction: column; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    #pricing, #comparison, #contact { padding: 60px 24px; }
+    .art-grid { grid-template-columns: repeat(3, 1fr); }
+    .art-cell:nth-child(1) { grid-column: span 2; }
+    .art-cell:nth-child(7) { grid-column: span 2; }
+    .art-cell:nth-child(9) { grid-column: span 1; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-    <!-- 1. Header & Start (Image 0) -->
-    <header>
-        yellowline-faroff1
-    </header>
-    <div class="start-content">
-        <h1>Here</h1>
-        <h1>Images</h1>
-        <h1>Import</h1>
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — HERO
+═══════════════════════════════════════════ -->
+<section id="hero">
+
+  <div class="hero-top-bar">
+    <div class="brand-name">yellowline<span>—</span>faroff1</div>
+    <div class="social-buttons">
+      <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn ig">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="YOUR_TWITTER_LINK" target="_blank" class="social-btn tw">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter / X
+      </a>
+      <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn yt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-text-col">
+      <p class="hero-eyebrow">— editorial illustration services</p>
+      <h1 class="hero-title">
+        Custom<br>
+        <span class="line-yellow">Illustration</span><br>
+        for your story.
+      </h1>
+      <p class="hero-desc">
+        Hand-crafted illustrations for articles, essays, newsletters, YouTube thumbnails and more. Original work, your vision — brought to life.
+      </p>
+      <a href="#contact" class="hero-cta">
+        Get in touch
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
-    <!-- 2. Black Art Gallery (Image 1) - TIGHTLY PACKED -->
-    <!-- Add your images here. The CSS will pack them tightly. -->
-    <section class="gallery-section">
-        <!-- Example with various aspect ratios to show tight packing -->
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x400/222/fff?text=Art+1+Square" alt="Art Placeholder 1">
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x600/333/fff?text=Art+2+Portrait" alt="Art Placeholder 2">
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300/444/fff?text=Art+3+Landscape" alt="Art Placeholder 3">
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x500/555/fff?text=Art+4" alt="Art Placeholder 4">
-        </div>
-         <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x400/666/fff?text=Art+5" alt="Art Placeholder 5">
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x350/777/fff?text=Art+6" alt="Art Placeholder 6">
-        </div>
-    </section>
+    <div class="hero-image-col" id="heroImageWrap">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadImage(event, 'heroImg')"/>
+      <img id="heroImg" src="" alt="" style="display:none;"/>
+      <div class="upload-placeholder" id="heroPlaceholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+        <p>Click to upload hero image</p>
+      </div>
+    </div>
+  </div>
 
-    <!-- 3. Comparison Section (Image 3) -->
-    <section class="comparison-section">
-        <div class="comparison-text">
-            <p>I want tonmentuon that illustration is not just an alternative to an video or a phto, it is onits own defert medium.</p>
-        </div>
-        <div class="comparison-container">
-            <div class="compare-image-wrapper">
-                <!-- Replace with your first comparison image -->
-                <img src="https://via.placeholder.com/450x350?text=eg+Image+1" alt="Comparison Example 1">
-            </div>
-            <div class="comparison-divider"></div>
-            <div class="compare-image-wrapper">
-                <!-- Replace with your second comparison image -->
-                <img src="https://via.placeholder.com/450x350?text=eg+Image+2" alt="Comparison Example 2">
-            </div>
-        </div>
-    </section>
+  <div class="hero-bottom-ticker">
+    <span class="ticker-track">
+      &nbsp;&nbsp;ILLUSTRATION &nbsp;·&nbsp; EDITORIAL &nbsp;·&nbsp; ARTICLES &nbsp;·&nbsp; ESSAYS &nbsp;·&nbsp; NEWSLETTERS &nbsp;·&nbsp; YOUTUBE THUMBNAILS &nbsp;·&nbsp; ORIGINAL ART &nbsp;·&nbsp; HAND-CRAFTED &nbsp;·&nbsp; ILLUSTRATION &nbsp;·&nbsp; EDITORIAL &nbsp;·&nbsp; ARTICLES &nbsp;·&nbsp; ESSAYS &nbsp;·&nbsp; NEWSLETTERS &nbsp;·&nbsp; YOUTUBE THUMBNAILS &nbsp;·&nbsp; ORIGINAL ART &nbsp;·&nbsp; HAND-CRAFTED &nbsp;·&nbsp;
+    </span>
+  </div>
 
-    <!-- 4. Pricing Section (Image 4) -->
-    <section class="pricing-section">
-        <h2>I offer two pricesThis code reproduces your layout, including the single-page scrolling structure, the specific black and white sections, the exact text placement, the bold prices in boxes, the tightly packed art gallery, and the side-by-side comparison feature.
+</section>
 
-To use this, simply save the code below as an `.html` file (e.g., `index.html`) and open it in any web browser.
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draft Webpage Layout</title>
-    <style>
-        /* --- Global Styles --- */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Times New Roman', Times, serif; /* Approximation of the serif font in the draft */
-            color: #333;
-            background-color: white;
-            line-height: 1.6;
-        }
 
-        /* General Section Styles for scrolling */
-        section {
-            padding: 80px 20px; /* Space between sections */
-            box-sizing: border-box;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — ART GALLERY (BLACK)
+═══════════════════════════════════════════ -->
+<section id="gallery">
 
-        /* General Typography - Note: Typos are preserved from your draft */
-        p, .price-desc {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            text-align: left;
-        }
+  <div class="gallery-header">
+    <h2>Selected Works</h2>
+    <span>— click any tile to upload</span>
+  </div>
 
-        /* --- 1. Header & Start (Image 0) --- */
-        header {
-            background-color: black;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            text-align: left;
-            width: 100%;
-            box-sizing: border-box;
-            border-bottom: 2px solid black; /* The solid black line underneath */
-        }
+  <div class="art-grid" id="artGrid">
 
-        .start-content {
-            background-color: white;
-            padding: 120px 20px;
-            text-align: center;
-        }
-
-        .start-content h1 {
-            font-size: 70px;
-            font-weight: bold;
-            margin: 10px 0;
-            /* Placeholder for the stylized/hand-drawn look */
-        }
-
-        /* --- 2. Black Art Gallery (Image 1) - TIGHTLY PACKED --- */
-        .gallery-section {
-            background-color: black;
-            padding: 0; /* Crucial for no spacing */
-            display: block; /* Use block for the masonry column approach */
-            
-            /* Define number of columns and zero gap */
-            column-count: 3; /* You can adjust the number of columns here */
-            column-gap: 0; 
-        }
-
-        /* Container for each piece of art */
-        .gallery-item {
-            display: inline-block; /* Key for masonry column flow */
-            width: 100%; /* Spans full column width */
-            margin: 0;
-            padding: 0;
-            break-inside: avoid; /* Prevents splitting an image across columns */
-            overflow: hidden;
-        }
-
-        /* The actual art images */
-        .gallery-item img {
-            width: 100%;
-            height: auto; /* Maintains aspect ratio for any size */
-            display: block; /* Removes bottom whitespace default on images */
-            object-fit: cover;
-        }
-
-        /* --- 3. Comparison Section (Image 3) --- */
-        .comparison-section {
-            background-color: white;
-            text-align: center;
-        }
-
-        .comparison-text {
-            font-size: 20px;
-            margin-bottom: 50px;
-            max-width: 700px;
-        }
-
-        .comparison-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px; /* Space between images and the line */
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* Container for each 'eg' image */
-        .compare-image-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-            /* Minimal styling for the 'eg' sketch effect */
-            border: 2px solid #ccc; 
-            padding: 15px;
-        }
-
-        /* The comparison images */
-        .compare-image-wrapper img {
-            width: 100%;
-            height: auto;
-            max-height: 450px; /* Prevents very tall images from breaking layout */
-            object-fit: contain; /* Prevents cropping */
-        }
-
-        /* The vertical black divider line */
-        .comparison-divider {
-            width: 2px;
-            height: 350px; /* Adjust this height as needed based on your images */
-            background-color: black;
-            flex-shrink: 0; /* Prevents the line from getting squished */
-        }
-
-        /* --- 4. Pricing Section (Image 4) --- */
-        .pricing-section {
-            background-color: white;
-            text-align: center;
-        }
-
-        .pricing-section h2 {
-            font-size: 38px;
-            margin-bottom: 60px;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-            gap: 70px; /* Space between columns */
-            max-width: 950px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .pricing-col {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        /* The bold price box styling */
-        .price-box {
-            font-size: 30px;
-            font-weight: bold;
-            padding: 12px 30px;
-            border: 4px solid black;
-            margin-bottom: 25px;
-            display: inline-block;
-        }
-
-        .price-desc {
-            font-size: 19px;
-            line-height: 1.7;
-        }
-
-        /* --- 5. Content & Contact (Images 2 & 5) --- */
-        .contact-info-section {
-            background-color: white;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-            align-items: flex-start; /* Aligns content to the left */
-        }
-
-        /* Special alignment for the text with arrow (Image 2) */
-        .contact-email-row {
-            display: flex;
-            align-items: center;
-            gap: 40px; /* Space for the arrow */
-            margin-top: 50px;
-            width: 100%;
-        }
-
-        /* Text block for Image 2 */
-        .contact-clarification-text {
-            flex: 1; /* Takes up remaining space */
-            margin: 0;
-        }
-
-        /* The boxed 'my email' text */
-        .contact-email-box {
-            display: inline-block;
-            border: 3px solid black;
-            padding: 10px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            /* Placeholder for the hand-drawn font look */
-        }
-
-        /* The arrow character from Image 2 */
-        .arrow {
-            font-size: 50px;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-    </style>
-</head>
-<body>
-
-    <!-- 1. Header & Start (Image 0) -->
-    <header>
-        yellowline-faroff1
-    </header>
-    <div class="start-content">
-        <h1>Here</h1>
-        <h1>Images</h1>
-        <h1>Import</h1>
+    <!-- 10 art cells -->
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+        <p>Art 01</p>
+      </div>
     </div>
 
-    <!-- 2. Black Art Gallery (Image 1) - TIGHTLY PACKED -->
-    <!-- You can add your images here. Use as many gallery-item divs as you need. -->
-    <section class="gallery-section">
-        
-        <!-- Example 1: Square -->
-        <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x400/222/fff?text=Art+1+Square](https://via.placeholder.com/400x400/222/fff?text=Art+1+Square)" alt="Art Piece 1">
-        </div>
-        
-        <!-- Example 2: Portrait -->
-        <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x600/333/fff?text=Art+2+Portrait](https://via.placeholder.com/400x600/333/fff?text=Art+2+Portrait)" alt="Art Piece 2">
-        </div>
-        
-        <!-- Example 3: Landscape -->
-        <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x300/444/fff?text=Art+3+Landscape](https://via.placeholder.com/400x300/444/fff?text=Art+3+Landscape)" alt="Art Piece 3">
-        </div>
-        
-        <!-- Example 4: Square -->
-        <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x400/555/fff?text=Art+4+Square](https://via.placeholder.com/400x400/555/fff?text=Art+4+Square)" alt="Art Piece 4">
-        </div>
-        
-        <!-- Example 5: Another Portrait -->
-         <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x550/666/fff?text=Art+5+Portrait](https://via.placeholder.com/400x550/666/fff?text=Art+5+Portrait)" alt="Art Piece 5">
-        </div>
-        
-        <!-- Example 6: Landscape -->
-        <div class="gallery-item">
-            <img src="[https://via.placeholder.com/400x350/777/fff?text=Art+6+Landscape](https://via.placeholder.com/400x350/777/fff?text=Art+6+Landscape)" alt="Art Piece 6">
-        </div>
-        
-    </section>
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 02</p>
+      </div>
+    </div>
 
-    <!-- 3. Comparison Section (Image 3) -->
-    <section class="comparison-section">
-        <div class="comparison-text">
-            <p>I want tonmentuon that illustration is not just an alternative to an video or a phto, it is onits own defert medium.</p>
-        </div>
-        <div class="comparison-container">
-            <div class="compare-image-wrapper">
-                <!-- Replace with your FIRST comparison image -->
-                <img src="[https://via.placeholder.com/450x380/eee/333?text=eg+Image+1](https://via.placeholder.com/450x380/eee/333?text=eg+Image+1)" alt="Comparison Example 1">
-            </div>
-            
-            <div class="comparison-divider"></div>
-            
-            <div class="compare-image-wrapper">
-                <!-- Replace with your SECOND comparison image -->
-                <img src="[https://via.placeholder.com/450x380/eee/333?text=eg+Image+2](https://via.placeholder.com/450x380/eee/333?text=eg+Image+2)" alt="Comparison Example 2">
-            </div>
-        </div>
-    </section>
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 03</p>
+      </div>
+    </div>
 
-    <!-- 4. Pricing Section (Image 4) -->
-    <section class="pricing-section">
-        <h2>I offer two prices</h2>
-        
-        <div class="pricing-grid">
-            <!-- Left Column (30 usd) -->
-            <div class="pricing-col">
-                <div class="price-box">30 usd</div>
-                <div class="price-desc">
-                    this is for those who alreadyhave a clear image on their mind and what me . and want me toi just just execute it on paper. u don't get
-                </div>
-            </div>
-            
-            <!-- Right Column (70 usd) -->
-            <div class="pricing-col">
-                <div class="price-box">70 usd</div>
-                <div class="price-desc">
-                    withr this yu get my input and mys understanding of ullustration to convey something
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 04</p>
+      </div>
+    </div>
 
-    <!-- 5. Content & Contact (Images 2 & 5) -->
-    <section class="contact-info-section">
-        <!-- Text from Image 5 (Part 1) -->
-        <p>illustratiosn for your artcles .essays. news letter.or youtube thumnails etc</p>
-        
-        <!-- Text from Image 2 with Arrow -->
-        <div class="contact-email-row">
-            <div class="contact-clarification-text">
-                <p>if you are confused or if you already knowhat you want , contact my email and we could discus price u are comfortable with and etc</p>
-            </div>
-            <div class="arrow">→</div>
-            <div class="contact-email-box">my email</div>
-        </div>
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 05</p>
+      </div>
+    </div>
 
-        <!-- Text from Image 5 (Part 2) -->
-        <p style="margin-top: 50px;">if you prefer my art style, as you have seen defert examples above you can contact me</p>
-    </section>
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 06</p>
+      </div>
+    </div>
+
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 07</p>
+      </div>
+    </div>
+
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 08</p>
+      </div>
+    </div>
+
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 09</p>
+      </div>
+    </div>
+
+    <div class="art-cell" onclick="triggerUpload(this)">
+      <input type="file" accept="image/*" class="hidden-input" onchange="loadArtCell(event, this)" onclick="event.stopPropagation()"/>
+      <img src="" alt="" style="display:none;"/>
+      <div class="art-cell-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+        <p>Art 10</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — SERVICES
+═══════════════════════════════════════════ -->
+<section id="services">
+
+  <div class="services-left">
+    <div>
+      <p class="services-tagline">
+        <strong>What I offer</strong>
+        Illustrations for your<br>articles, essays,<br>newsletters &amp; thumbnails.
+      </p>
+    </div>
+
+    <ul class="services-list">
+      <li>Articles</li>
+      <li>Essays</li>
+      <li>Newsletters</li>
+      <li>YouTube Thumbnails</li>
+      <li>Editorial</li>
+      <li>Custom Prints</li>
+    </ul>
+
+    <p class="services-sub">
+      If you prefer my art style — as you have seen different examples above — you can contact me and we can find the right approach for your project.
+    </p>
+  </div>
+
+  <div class="services-right" id="servicesImgWrap">
+    <input type="file" accept="image/*" class="hidden-input" onchange="loadImage(event, 'servicesImg')"/>
+    <img id="servicesImg" src="" alt="" style="display:none;"/>
+    <div class="upload-zone" id="servicesZone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+      <p>Upload image</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — PRICING
+═══════════════════════════════════════════ -->
+<section id="pricing">
+
+  <p class="pricing-eyebrow">— transparent pricing</p>
+  <h2 class="pricing-title">I offer two prices</h2>
+
+  <div class="pricing-grid">
+
+    <!-- $30 -->
+    <div class="pricing-card">
+      <div class="pricing-badge">Standard</div>
+      <div class="pricing-amount"><span class="pricing-currency">$</span>30</div>
+      <p class="pricing-label">Execution Pack</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">
+        This is for those who already have a clear image in their mind and know exactly what they want. You bring the concept — I execute it on paper with precision. You don't get editorial input with this tier, just clean, faithful illustration delivery.
+      </p>
+    </div>
+
+    <!-- $70 -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Editorial</div>
+      <div class="pricing-amount"><span class="pricing-currency">$</span>70</div>
+      <p class="pricing-label">Editorial Pack — Recommended</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">
+        With this you get my input and my understanding of illustration to convey something. I recommend this because you will get far better results — I understand how illustration works as a medium and will bring genuine editorial thinking to your project.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — COMPARISON EXAMPLES
+═══════════════════════════════════════════ -->
+<section id="comparison">
+
+  <div class="comparison-header">
+    <h2>Illustration is not just an alternative to a video or photo — <em>it is its own distinct medium.</em></h2>
+    <p>— examples of my work &nbsp;|&nbsp; click each side to upload your comparison images</p>
+  </div>
+
+  <div class="comparison-examples">
+
+    <!-- Example 1 -->
+    <div class="comparison-row">
+      <span class="comp-label left">Before</span>
+      <span class="comp-label right">After</span>
+      <div class="comp-side" id="comp1L">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp1L')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload left</p>
+        </div>
+      </div>
+      <div class="comp-divider"></div>
+      <div class="comp-side" id="comp1R">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp1R')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload right</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="comparison-row">
+      <span class="comp-label left">Before</span>
+      <span class="comp-label right">After</span>
+      <div class="comp-side" id="comp2L">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp2L')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload left</p>
+        </div>
+      </div>
+      <div class="comp-divider"></div>
+      <div class="comp-side" id="comp2R">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp2R')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload right</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="comparison-row">
+      <span class="comp-label left">Before</span>
+      <span class="comp-label right">After</span>
+      <div class="comp-side" id="comp3L">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp3L')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload left</p>
+        </div>
+      </div>
+      <div class="comp-divider"></div>
+      <div class="comp-side" id="comp3R">
+        <input type="file" accept="image/*" class="hidden-input" onchange="loadCompImg(event, 'comp3R')"/>
+        <img src="" alt="" style="display:none;"/>
+        <div class="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg>
+          <p>Upload right</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6 — CONTACT / EMAIL
+═══════════════════════════════════════════ -->
+<section id="contact">
+
+  <div class="contact-grid">
+
+    <div class="contact-left">
+      <h2>Let's make<br>something <em>worth seeing.</em></h2>
+      <p class="contact-recommendation">
+        That is why I recommend going with the editorial pack — you will get far better results as I understand how illustration works as a medium and can bring genuine creative direction to your project.
+      </p>
+      <p style="font-size:0.78rem;color:#666;letter-spacing:0.05em;">If you are confused, or if you already know what you want — contact my email and we can discuss the price you are comfortable with and everything else.</p>
+    </div>
+
+    <div class="contact-right">
+      <p>Reach out directly — I respond to every message and we can work out the details together.</p>
+
+      <div class="email-box">
+        <div class="email-box-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <div class="email-box-text">
+          <span>Email me at</span>
+          <!-- ← REPLACE with your actual email -->
+          <a href="mailto:YOUR_EMAIL@example.com" class="email-address">YOUR_EMAIL@example.com</a>
+        </div>
+      </div>
+
+      <a href="mailto:YOUR_EMAIL@example.com" class="contact-cta">
+        Send a message
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">yellowline<span>—</span>faroff1</div>
+  <p>© 2025 &nbsp;·&nbsp; All illustrations original &nbsp;·&nbsp; All rights reserved</p>
+</footer>
+
+
+<script>
+  /* ── Single-image upload (hero, services) ── */
+  function loadImage(event, imgId) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.getElementById(imgId);
+      img.src = e.target.result;
+      img.style.display = 'block';
+      // Hide placeholder/zone
+      const wrap = img.closest('[id]');
+      const ph = wrap.querySelector('.upload-placeholder, .upload-zone');
+      if (ph) ph.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* ── Art grid cells ── */
+  function triggerUpload(cell) {
+    cell.querySelector('input[type="file"]').click();
+  }
+
+  function loadArtCell(event, input) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const cell = input.closest('.art-cell');
+    const img = cell.querySelector('img');
+    const inner = cell.querySelector('.art-cell-inner');
+    const reader = new FileReader();
+    reader.onload = e => {
+      img.src = e.target.result;
+      img.style.display = 'block';
+      if (inner) inner.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* ── Comparison sides ── */
+  function loadCompImg(event, cellId) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const cell = document.getElementById(cellId);
+    const img = cell.querySelector('img');
+    const zone = cell.querySelector('.upload-zone');
+    const reader = new FileReader();
+    reader.onload = e => {
+      img.src = e.target.result;
+      img.style.display = 'block';
+      if (zone) zone.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+</script>
 
 </body>
 </html>
